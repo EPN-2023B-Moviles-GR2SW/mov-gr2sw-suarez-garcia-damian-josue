@@ -3,4 +3,9 @@
     <string name="title_activity_aresources">AResources</string>
     <color name="bg">#FFFFFFFF</color>
     <string name="saludo"> Buenos Dias</string>
+    <string-array name="string_array_opciones_dialogo">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+    </string-array>
 </resources>
