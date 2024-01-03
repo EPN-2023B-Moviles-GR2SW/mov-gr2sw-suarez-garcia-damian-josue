@@ -1,5 +1,6 @@
 package com.example.b2023gr2sw
 
+import EBaseDeDatos
 import android.content.Intent
 import android.os.Bundle;
 import android.widget.Button
@@ -51,9 +52,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //Base de datos sqlite
+        EBaseDeDatos.tableEntrenador = ESqliteHelperEntrenador(
+            this
+        )
+
         val botonCicloVida = findViewById<Button>(R.id.btn_ciclo_vida)
         botonCicloVida
             .setOnClickListener {
@@ -83,6 +91,12 @@ class MainActivity : AppCompatActivity() {
             .setOnClickListener{
                 abrirActividadConParametros(
                     CIntentExplicitoParametros::class.java)
+            }
+
+        val botonSqlite = findViewById<Button>(R.id.btn_sqlite)
+        botonSqlite
+            .setOnClickListener{
+                irActividad(ECrudEntrenador::class.java)
             }
     }
 
