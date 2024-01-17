@@ -30,7 +30,7 @@ class ESqliteHelperEntrenador(
         TODO("Not yet implement")
     }
 
-    fun crearEntrenado(
+    fun crearEntrenador(
         nombre: String,
         descripcion: String
     ): Boolean {
@@ -48,7 +48,7 @@ class ESqliteHelperEntrenador(
         return if (resultadoGuardar.toInt()==-1) false else true
     }
 
-    fun eliminarEntrnadorFormulario(id:Int):Boolean{
+    fun eliminarEntrenadorFormulario(id:Int):Boolean{
         val conexionEscritura = writableDatabase
         //where ID = ?
         val parametrosConsultaDelete = arrayOf (id.toString())

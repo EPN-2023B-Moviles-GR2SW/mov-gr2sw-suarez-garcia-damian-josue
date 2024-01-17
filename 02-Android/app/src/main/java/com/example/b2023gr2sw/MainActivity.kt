@@ -1,6 +1,5 @@
 package com.example.b2023gr2sw
 
-import EBaseDeDatos
 import android.content.Intent
 import android.os.Bundle;
 import android.widget.Button
@@ -97,6 +96,12 @@ class MainActivity : AppCompatActivity() {
         botonSqlite
             .setOnClickListener{
                 irActividad(ECrudEntrenador::class.java)
+            }
+
+        val botonRView = findViewById<Button>(R.id.btn_revcycler_view)
+        botonRView
+            .setOnClickListener{
+                irActividad(FRecyclerView::class.java)
             }
     }
 

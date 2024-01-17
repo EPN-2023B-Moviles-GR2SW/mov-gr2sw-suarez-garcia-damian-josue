@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_sqlite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ECrudEntrenador">
@@ -50,30 +51,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BUSCAR"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="311dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_crear_bdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_crear_bdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CREAR"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="311dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_actualizar_bdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ACTUALIZAR"
-        tools:layout_editor_absoluteX="252dp"
-        tools:layout_editor_absoluteY="314dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.698"
+        app:layout_constraintStart_toEndOf="@+id/btn_crear_bdd"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_eliminar_bdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ELIMINAR"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="382dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_crear_bdd"
+        app:layout_constraintVertical_bias="0.15" />
 </androidx.constraintlayout.widget.ConstraintLayout>
