@@ -1,46 +1,71 @@
 package com.example.b2023gr2sw
 
+import android.content.pm.PackageManager
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.b2023gr2sw.ui.theme.B2023gr2swTheme
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.SupportMapFragment
 
-class GGoogleMapsActivity : ComponentActivity() {
+class GGoogleMapsActivity : AppCompatActivity() {
+    private lateinit var mapa: GoogleMap
+    var permisos  = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            B2023gr2swTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+        setContentView(R.layout.activity_google_maps)
+        solicitarPermisos()
+        iniciarLogicaMapa()
+    }
+
+    fun iniciarLogicaMapa(){
+        val fragmentoMapa = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        fragmentoMapa.getMapAsync { googleMap ->
+            with(googleMap){
+                mapa = googleMap
+                establecerConfiguracionMapa()
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    B2023gr2swTheme {
-        Greeting("Android")
+    fun establecerConfiguracionMapa(){
+        val contexto = this.applicationContext
+        with(mapa){
+            val permisosFineLocation = ContextCompat
+                .checkSelfPermission(
+                    contexto,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            val tienePermisos = permisosFineLocation ==
+                    PackageManager.PERMISSION_GRANTED
+            if (tienePermisos){
+                mapa.isMyLocationEnabled = true
+                uiSettings.isMyLocationButtonEnabled = true
+            }
+            uiSettings.isZoomControlsEnabled = true
+        }
+    }
+    fun solicitarPermisos(){
+        val contexto = this.applicationContext
+        val nombrePermiso = android.Manifest.permission.ACCESS_FINE_LOCATION
+        val nombrePermisoCoarse = android.Manifest.permission.ACCESS_COARSE_LOCATION
+        val permisosFineLocation = ContextCompat.
+        checkSelfPermission(
+            contexto,
+            nombrePermiso
+        )
+        val tienePermisos = permisosFineLocation == PackageManager.PERMISSION_GRANTED
+        if (tienePermisos){
+            permisos = true
+        }else{
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    nombrePermiso, nombrePermisoCoarse
+                ),
+                1
+            )
+        }
     }
 }
