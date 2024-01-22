@@ -6,4 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".FormDesarrolladora">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="CREAR DESARROLLADORA"
+        android:textColor="#00000F"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/input_fecha_desarrolladora"
+        android:layout_width="268dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="36dp"
+        android:ems="10"
+        android:hint="Fecha de Fundacion"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/input_totalJuegos_desarrolladora"
+        app:layout_constraintEnd_toEndOf="@+id/input_totalJuegos_desarrolladora"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/input_totalJuegos_desarrolladora" />
+
+    <EditText
+        android:id="@+id/input_totalJuegos_desarrolladora"
+        android:layout_width="269dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="40dp"
+        android:ems="10"
+        android:hint="Total de Juegos"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/input_ingresos_desarrolladora"
+        app:layout_constraintEnd_toEndOf="@+id/input_ingresos_desarrolladora"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/input_ingresos_desarrolladora" />
+
+    <EditText
+        android:id="@+id/input_id_desarrolladora"
+        android:layout_width="267dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint="ID de la Desarrolladora"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/input_nombre_desarrolladora"
+        app:layout_constraintEnd_toEndOf="@+id/input_nombre_desarrolladora"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_nombre_desarrolladora"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/input_ingresos_desarrolladora"
+        android:layout_width="269dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="260dp"
+        android:ems="10"
+        android:hint="Ingresos Anuales"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/input_nombre_desarrolladora"
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="40dp"
+        android:ems="10"
+        android:hint="Nombre de la Desarrolladora"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/input_fecha_desarrolladora"
+        app:layout_constraintEnd_toEndOf="@+id/input_fecha_desarrolladora"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/input_fecha_desarrolladora" />
+
+    <Button
+        android:id="@+id/btn_add_desarrolladora"
+        android:layout_width="147dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="#F9F9F9"
+        android:text="CREAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cancelar_desarrolladora"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_cancelar_desarrolladora"
+        android:layout_width="146dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="76dp"
+        android:backgroundTint="#F9F9F9"
+        android:text="CANCELAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
