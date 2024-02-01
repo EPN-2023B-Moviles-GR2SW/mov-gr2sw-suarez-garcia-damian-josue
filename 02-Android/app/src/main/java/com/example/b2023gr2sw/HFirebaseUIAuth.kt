@@ -1,11 +1,11 @@
-package com.example.a04_examenbi
+package com.example.b2023gr2sw
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity() {
+class HFirebaseUIAuth : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_hfirebase_uiauth)
     }
 }
