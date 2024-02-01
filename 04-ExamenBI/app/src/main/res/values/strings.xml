@@ -1,4 +1,31 @@
 <resources>
     <string name="app_name">04-ExamenBI</string>
-    <string name="title_activity_start_home">startHome</string>
+
+    <string name="titulo_lista_developers">Developers</string>
+    <string name="btn_crear_developer">Crear</string>
+    <dimen name="lv_width">355dp</dimen>
+    <dimen name="lv_height">445dp</dimen>
+    <string name="lbl_titulo_creacion_developer">Ingresa los datos del developer</string>
+    <string name="lbl_datos_developer">Datos Developer</string>
+    <string name="lbl_nombre">Nombre</string>
+    <string name="lbl_datos_fecha_fundacion">Fecha de fundacion</string>
+    <string name="lbl_total_juegos">totalJuegos</string>
+    <string name="lbl_ingresos_anuales">Ingresos Anuales</string>
+
+    <string name="hint_nombre">Ej. "Rockstar"</string>
+    <string name="hint_datos_fecha_fundacion"> yyyy-MM-dd Ej. "2024-01-07"</string>
+    <string name="hint_total_juegos">Ej. "12"</string>
+    <string name="hint_ingresos_anuales">Ej. "2050.00"</string>
+
+    <dimen name="txt_width">220dp</dimen>
+    <dimen name="txt_height">48dp</dimen>
+    <dimen name="lbl_width">100dp</dimen>
+    <dimen name="lbl_height">16dp</dimen>
+
+    <string-array name="items_multiplayer">
+        <item>--Seleccionar--</item>
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
+
 </resources>

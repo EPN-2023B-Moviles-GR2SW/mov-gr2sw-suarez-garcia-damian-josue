@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">B2023gr2sw</string>
-    <string name="title_activity_aresources">AResources</string>
-    <color name="bg">#FFFF00</color>
-    <color name="colorchange">#0000FF</color>
-    <string name="saludo"> Buenas noches mama</string>
-</resources>

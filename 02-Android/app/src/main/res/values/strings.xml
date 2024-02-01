@@ -1,13 +1,11 @@
 <resources>
     <string name="app_name">B2023gr2sw</string>
     <string name="title_activity_aresources">AResources</string>
-    <color name="bg">#FFFFFFFF</color>
-    <string name="saludo"> Buenos Dias</string>
+    <string name="saludo">Buenos dias</string>
     <string-array name="string_array_opciones_dialogo">
         <item>Lunes</item>
         <item>Martes</item>
         <item>Miercoles</item>
     </string-array>
     <string name="title_activity_google_maps_inicio">GoogleMapsInicio</string>
-    <string name="title_activity_ggoogle_maps">GGoogleMapsActivity</string>
 </resources>

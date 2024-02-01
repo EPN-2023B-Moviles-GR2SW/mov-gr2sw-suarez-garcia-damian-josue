@@ -34,9 +34,13 @@ class FRecyclerViewAdaptadorNombreDescripcion(
         }
     }
 
+
+
     override fun getItemCount(): Int {
         return this.lista.size
     }
+
+
 
     // Setear el layout que vamos a utilizar
     override fun onCreateViewHolder(parent: ViewGroup,
@@ -50,6 +54,13 @@ class FRecyclerViewAdaptadorNombreDescripcion(
             )
         return MyViewHolder(itemView)
     }
+
+
+
+
+
+
+
 
     // Setear los datos para la iteracion
     override fun onBindViewHolder(

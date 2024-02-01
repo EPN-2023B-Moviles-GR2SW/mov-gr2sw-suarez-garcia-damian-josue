@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="bg_constraint">#91D1D3</color>
+    <color name="titulo_lista_developers">#FFFFFF</color>
+    <color name="bg_titulo_developers">#0E696C</color>
+    <color name="color_btn_crear_developer">#FFFFFF</color>
+    <color name="bg_btn_crear_developers">#077785</color>
+    <color name="bg_creacion_developer">#195E63</color>
+    <color name="labels_creacion_developer">#009688</color>
+    <color name="texts_inputs_developers">#04146E</color>
 </resources>

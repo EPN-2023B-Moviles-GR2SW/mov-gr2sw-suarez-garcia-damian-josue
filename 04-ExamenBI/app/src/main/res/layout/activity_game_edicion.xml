@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_edicion_game"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_constraint"
+    tools:context=".Game_edicion">
+
+    <TextView
+        android:id="@+id/txt_editar_game"
+        android:layout_width="413dp"
+        android:layout_height="70dp"
+        android:background="@color/bg_titulo_developers"
+        android:paddingTop="10sp"
+        android:text="Editar Juego"
+        android:textAlignment="center"
+        android:textColor="@color/titulo_lista_developers"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_juego_titulo"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@color/bg_titulo_developers"
+        android:textAlignment="center"
+        android:textColor="@color/titulo_lista_developers"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_editar_game"
+        app:layout_constraintStart_toStartOf="@+id/txt_editar_game"
+        app:layout_constraintTop_toBottomOf="@+id/txt_editar_game" />
+
+    <TextView
+        android:id="@+id/tv_nombre_game_edit"
+        android:layout_width="133dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="52dp"
+        android:paddingTop="5sp"
+        android:text="Nombre"
+        android:textColor="@color/labels_creacion_developer"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_juego_titulo" />
+
+    <TextView
+        android:id="@+id/tv_fecha_lanzamiento_edit"
+        android:layout_width="145dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="28dp"
+        android:paddingTop="5sp"
+        android:text="Fecha de Lanzamiento"
+        android:textColor="@color/labels_creacion_developer"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_nombre_game_edit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_nombre_game_edit"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nombre_game_edit" />
+
+    <TextView
+        android:id="@+id/tv_esMultiplayer_edit"
+        android:layout_width="133dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="36dp"
+        android:paddingTop="5sp"
+        android:text="¿Es Multiplayer?"
+        android:textColor="@color/labels_creacion_developer"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_fecha_lanzamiento_edit"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_fecha_lanzamiento_edit"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fecha_lanzamiento_edit" />
+
+    <TextView
+        android:id="@+id/tv_precio"
+        android:layout_width="133dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="44dp"
+        android:paddingTop="5sp"
+        android:text="Precio"
+        android:textColor="@color/labels_creacion_developer"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_esMultiplayer_edit"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_esMultiplayer_edit"
+        app:layout_constraintTop_toBottomOf="@+id/tv_esMultiplayer_edit" />
+
+    <EditText
+        android:id="@+id/et_nombre_game_edit"
+        android:layout_width="188dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:ems="10"
+        android:hint="Nombre del Juego"
+        android:inputType="text"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_nombre_game_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_nombre_game_edit"
+        app:layout_constraintTop_toTopOf="@+id/tv_nombre_game_edit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/et_fecha_lanzamiento_edit"
+        android:layout_width="188dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:ems="10"
+        android:hint="yyyy-MM-dd"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_fecha_lanzamiento_edit"
+        app:layout_constraintEnd_toEndOf="@+id/et_nombre_game_edit"
+        app:layout_constraintStart_toEndOf="@+id/tv_fecha_lanzamiento_edit"
+        app:layout_constraintTop_toTopOf="@+id/tv_fecha_lanzamiento_edit"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/sp_esmultiplayer_edit"
+        android:layout_width="187dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_esMultiplayer_edit"
+        app:layout_constraintEnd_toEndOf="@+id/et_fecha_lanzamiento_edit"
+        app:layout_constraintStart_toEndOf="@+id/tv_esMultiplayer_edit"
+        app:layout_constraintTop_toTopOf="@+id/tv_esMultiplayer_edit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/et_precio_game_edit"
+        android:layout_width="188dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="32dp"
+        android:ems="10"
+        android:hint="Ej. 2.50"
+        android:inputType="numberDecimal"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_precio"
+        app:layout_constraintEnd_toEndOf="@+id/sp_esmultiplayer_edit"
+        app:layout_constraintStart_toEndOf="@+id/tv_precio"
+        app:layout_constraintTop_toTopOf="@+id/tv_precio"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btn_guardar_game_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="@color/bg_btn_crear_developers"
+        android:text="CREAR"
+        android:textAlignment="center"
+        android:textColor="@color/color_btn_crear_developer"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/et_precio_game_edit"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/tv_precio"
+        app:layout_constraintTop_toBottomOf="@+id/tv_precio" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

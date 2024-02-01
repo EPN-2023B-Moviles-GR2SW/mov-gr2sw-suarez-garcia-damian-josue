@@ -6,25 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".BListView">
 
+    <ListView
+        android:id="@+id/lv_list_view"
+        android:layout_width="328dp"
+        android:layout_height="354dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btn_anadir_list_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Añadir"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
-
-    <ListView
-        android:id="@+id/lv_list_view"
-        android:layout_width="329dp"
-        android:layout_height="490dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_anadir_list_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="48dp"
+        android:text="Anadir"
+        app:layout_constraintEnd_toEndOf="@+id/lv_list_view"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/lv_list_view"
+        app:layout_constraintTop_toBottomOf="@+id/lv_list_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

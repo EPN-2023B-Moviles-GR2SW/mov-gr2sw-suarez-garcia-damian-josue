@@ -20,7 +20,7 @@ class ECrudEntrenador : AppCompatActivity() {
                 R.id.input_descripcion
             )
             // Consultar SQLite
-            val entrenador = EBaseDeDatos.tableEntrenador!!
+            val entrenador = EBaseDeDatos.tablaEntrenador!!
                 .consultarEntrenadorPorID(
                     id.text.toString().toInt()
                 )
@@ -41,7 +41,7 @@ class ECrudEntrenador : AppCompatActivity() {
                 val nombre = findViewById<EditText>(R.id.input_nombre)
                 val descripcion = findViewById<EditText>(R.id.input_descripcion)
                 val respuesta = EBaseDeDatos
-                    .tableEntrenador!!.crearEntrenador(
+                    .tablaEntrenador!!.crearEntrenador(
                         nombre.text.toString(),
                         descripcion.text.toString()
                     )
@@ -53,7 +53,7 @@ class ECrudEntrenador : AppCompatActivity() {
                 val id = findViewById<EditText>(R.id.input_id)
                 val nombre = findViewById<EditText>(R.id.input_nombre)
                 val descripcion = findViewById<EditText>(R.id.input_descripcion)
-                val respuesta = EBaseDeDatos.tableEntrenador!!.actualizarEntrenadorFormulario(
+                val respuesta = EBaseDeDatos.tablaEntrenador!!.actualizarEntrenadorFormulario(
                     nombre.text.toString(),
                     descripcion.text.toString(),
                     id.text.toString().toInt()
@@ -65,10 +65,10 @@ class ECrudEntrenador : AppCompatActivity() {
         )
         botonEliminarBDD.setOnClickListener {
             val id = findViewById<EditText>(R.id.input_id)
-            val respuesta = EBaseDeDatos.tableEntrenador!!
+            val respuesta = EBaseDeDatos.tablaEntrenador!!
                 .eliminarEntrenadorFormulario(
-                    id.text.toString().toInt()
-                )
+                id.text.toString().toInt()
+            )
             if (respuesta) mostrarSnackbar("Usu. Eliminado")
         }
     }
@@ -82,5 +82,3 @@ class ECrudEntrenador : AppCompatActivity() {
             .show()
     }
 }
-
-

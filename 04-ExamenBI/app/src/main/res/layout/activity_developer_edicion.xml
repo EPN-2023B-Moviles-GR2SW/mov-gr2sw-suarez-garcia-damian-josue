@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_edicion_developer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_constraint"
+    android:scrollbars="vertical"
+    >
+
+    <EditText
+        android:id="@+id/txt_ingresos_anuales_edit"
+        android:layout_width="@dimen/txt_width"
+        android:layout_height="@dimen/txt_height"
+        android:layout_marginTop="96dp"
+        android:ems="10"
+        android:hint="@string/hint_ingresos_anuales"
+        android:inputType="text"
+        android:textColor="@color/texts_inputs_developers"
+        android:textColorHint="@color/texts_inputs_developers"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_totaljuegos"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lbl_totaljuegos"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_totaljuegos" />
+
+    <TextView
+        android:id="@+id/lbl_ingresosanuales"
+        android:layout_width="@dimen/lbl_width"
+        android:layout_height="@dimen/lbl_height"
+        android:layout_marginTop="112dp"
+        android:text="@string/lbl_ingresos_anuales"
+        android:textColor="@color/labels_creacion_developer"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_fecha_fundacion_edit"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="@+id/txt_fecha_fundacion_edit"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_fundacion_edit" />
+
+    <TextView
+        android:id="@+id/lbl_titulo_edicion_developer"
+        android:layout_width="415dp"
+        android:layout_height="36dp"
+        android:background="@color/bg_titulo_developers"
+        android:paddingLeft="2sp"
+        android:paddingTop="2sp"
+        android:paddingRight="2sp"
+        android:paddingBottom="2sp"
+        android:textAlignment="center"
+        android:textColor="@color/titulo_lista_developers"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/lbl_datos_developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/lbl_datos_developer"
+        android:textAllCaps="false"
+        android:textColor="#245359"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="@+id/lbl_titulo_edicion_developer"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_titulo_edicion_developer" />
+
+    <TextView
+        android:id="@+id/lbl_nombre"
+        android:layout_width="@dimen/lbl_width"
+        android:layout_height="@dimen/lbl_height"
+        android:layout_marginTop="36dp"
+        android:text="@string/lbl_nombre"
+        android:textColor="@color/labels_creacion_developer"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_datos_developer"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/lbl_datos_developer"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_datos_developer" />
+
+    <TextView
+        android:id="@+id/lbl_datos_fecha_fun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:text="@string/lbl_datos_fecha_fundacion"
+        android:textColor="#245359"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_datos_developer"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lbl_datos_developer"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_datos_developer" />
+
+    <TextView
+        android:id="@+id/lbl_fecha"
+        android:layout_width="@dimen/lbl_width"
+        android:layout_height="@dimen/lbl_height"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/lbl_datos_fecha_fundacion"
+        android:textColor="@color/labels_creacion_developer"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/lbl_datos_fecha_fun"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_datos_fecha_fun" />
+
+    <EditText
+        android:id="@+id/txt_nombre_edit"
+        android:layout_width="@dimen/txt_width"
+        android:layout_height="@dimen/txt_height"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:hint="@string/hint_nombre"
+        android:inputType="text"
+        android:textColor="@color/texts_inputs_developers"
+        android:textColorHint="@color/texts_inputs_developers"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_nombre"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lbl_nombre"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_nombre" />
+
+    <EditText
+        android:id="@+id/txt_fecha_fundacion_edit"
+        android:layout_width="@dimen/txt_width"
+        android:layout_height="@dimen/txt_height"
+        android:ems="10"
+        android:hint="@string/hint_datos_fecha_fundacion"
+        android:inputType="text"
+        android:textColor="@color/texts_inputs_developers"
+        android:textColorHint="@color/texts_inputs_developers"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_fecha"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="@+id/lbl_fecha"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_fecha" />
+
+    <EditText
+        android:id="@+id/txt_total_juegos_edit"
+        android:layout_width="@dimen/txt_width"
+        android:layout_height="@dimen/txt_height"
+        android:ems="10"
+        android:hint="@string/hint_total_juegos"
+        android:inputType="text"
+        android:textColor="@color/texts_inputs_developers"
+        android:textColorHint="@color/texts_inputs_developers"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_totaljuegos"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/lbl_totaljuegos"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_totaljuegos" />
+
+    <TextView
+        android:id="@+id/lbl_totaljuegos"
+        android:layout_width="@dimen/lbl_width"
+        android:layout_height="@dimen/lbl_height"
+        android:layout_marginTop="16dp"
+        android:text="@string/lbl_total_juegos"
+        android:textColor="@color/labels_creacion_developer"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_fecha_fundacion_edit"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="@+id/txt_fecha_fundacion_edit"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_fundacion_edit" />
+
+    <Button
+        android:id="@+id/btn_guardar_developer_edit"
+        android:layout_width="129dp"
+        android:layout_height="45dp"
+        android:background="@color/bg_btn_crear_developers"
+        android:text="Guardar"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ingresos_anuales_edit" />
+</androidx.constraintlayout.widget.ConstraintLayout>

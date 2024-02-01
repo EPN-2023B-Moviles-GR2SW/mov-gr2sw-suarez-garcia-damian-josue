@@ -13,21 +13,32 @@
         android:theme="@style/Theme._04ExamenBI"
         tools:targetApi="31">
         <activity
-            android:name=".FormJuego"
+            android:name=".Game_Listado"
             android:exported="false" />
         <activity
-            android:name=".FormDesarrolladora"
+            android:name=".Game_edicion"
             android:exported="false" />
         <activity
-            android:name=".JuegoHome"
+            android:name=".Developer_edicion"
             android:exported="false" />
         <activity
-            android:name=".DesarrolladoraHome"
-            android:exported="false"/>
+            android:name=".Game_creacion"
+            android:exported="false" />
+        <activity
+            android:name=".Developer_creacion"
+            android:exported="false" />
+        <activity
+            android:name=".FormDeveloper"
+            android:exported="false" />
+        <activity
+            android:name=".HomeGame"
+            android:exported="false" />
+        <activity
+            android:name=".HomeDeveloper"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

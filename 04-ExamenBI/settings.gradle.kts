@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "04-ExamenBI"
 include(":app")
- 

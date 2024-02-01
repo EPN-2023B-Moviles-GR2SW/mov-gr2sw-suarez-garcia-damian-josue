@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "992446032398",
-    "project_id": "b2023-gr2sw-djsg",
-    "storage_bucket": "b2023-gr2sw-djsg.appspot.com"
+    "project_number": "824119905999",
+    "project_id": "b2023-gr2sw-vaes-1",
+    "storage_bucket": "b2023-gr2sw-vaes-1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:992446032398:android:5c2684a5d15e47d1386a5f",
+        "mobilesdk_app_id": "1:824119905999:android:0d3e1c05b03284800b31ba",
         "android_client_info": {
           "package_name": "com.example.b2023gr2sw"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBwFcZj9glxtdE12HTrpf3ZAl9zG4OE_lo"
+          "current_key": "AIzaSyATkVdoQr9gPuZffHz3GlfKIaR4ON9MvGw"
         }
       ],
       "services": {

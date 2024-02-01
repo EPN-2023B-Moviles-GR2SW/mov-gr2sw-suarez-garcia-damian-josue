@@ -11,16 +11,15 @@ class CIntentExplicitoParametros : AppCompatActivity() {
         setContentView(R.layout.activity_cintent_explicito_parametros)
         val nombre = intent.getStringExtra("nombre")
         val apellido = intent.getStringExtra("apellido")
-        val edad = intent.getIntExtra("edad",8)
+        val edad = intent.getIntExtra("edad", 0)
         val boton = findViewById<Button>(R.id.btn_devolver_respuesta)
         boton
-            .setOnClickListener { devolverRespuesta()}
+            .setOnClickListener { devolverRespuesta() }
     }
-
     fun devolverRespuesta(){
         val intentDevolverParametros = Intent()
-        intentDevolverParametros.putExtra("nombreModificado","Josue")
-        intentDevolverParametros.putExtra("edadModificada",23)
+        intentDevolverParametros.putExtra("nombreModificado", "Vicente")
+        intentDevolverParametros.putExtra("edadModificado", 33)
         setResult(
             RESULT_OK,
             intentDevolverParametros
