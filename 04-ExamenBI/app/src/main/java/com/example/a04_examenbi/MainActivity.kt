@@ -25,27 +25,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Inicialización de la base de datos
-        BDDconection.bddAplication = BDDSql(this)
+        //BDDconection.bddAplication = BDDSql(this)
+        BDDconection.bddAplication = BDDFirestore()
+        BDDconection.bddAplication!!.obtenerDevelopers{ developers ->
+                this.developers= developers
 
-        developers = BDDconection.bddAplication!!.obtenerDeveloper()
+                if(developers.size != 0){
+                    //listado de cocineros
+                    val listView = findViewById<ListView>(R.id.lv_list_developers)
 
-        if (developers.size != 0) {
-            // Listado de developers
-            val listView = findViewById<ListView>(R.id.lv_list_developers)
+                    val adaptador = ArrayAdapter(
+                        this, // contexto
+                        android.R.layout.simple_list_item_1, // como se va a ver (XML)
+                        developers
+                    )
 
-            val adaptador = ArrayAdapter(
-                this, // contexto
-                android.R.layout.simple_list_item_1, // como se va a ver (XML)
-                developers
-            )
-
-            listView.adapter = adaptador
-            adaptador.notifyDataSetChanged()
-            registerForContextMenu(listView)
-        } else {
-            mostrarSnackbar("No existen developers")
-        }
-
+                    listView.adapter = adaptador
+                    adaptador.notifyDataSetChanged()
+                    registerForContextMenu(listView)
+                }else{
+                    mostrarSnackbar("No existen cocineros")
+                }
+            }
         val btnCrearDeveloper = findViewById<Button>(R.id.id_btn_crear)
         btnCrearDeveloper.setOnClickListener {
             val intent = Intent(this, Developer_creacion::class.java)
@@ -53,12 +54,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun mostrarSnackbar(texto: String) {
-        Snackbar.make(
-            findViewById(R.id.constraint_developers),
-            texto,
-            Snackbar.LENGTH_LONG
-        ).show()
+    fun mostrarSnackbar(texto:String){
+        Snackbar
+            .make(
+                findViewById(R.id.constraint_developers), //view
+                texto, //texto
+                Snackbar.LENGTH_LONG //tiwmpo
+            )
+            .show()
     }
 
     // Creación de las opciones de acción (editar, eliminar, ver games)
@@ -98,6 +101,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 return result
             }
+
             R.id.mi_ver_games -> {
                 val idDeveloper = developers[posicionItemSeleccionado].id
                 val nombreDeveloper = developers[posicionItemSeleccionado].nombre
@@ -121,17 +125,16 @@ class MainActivity : AppCompatActivity() {
             "Aceptar",
             DialogInterface.OnClickListener { dialog, which ->
 
-                val respuesta =
-                    BDDconection.bddAplication?.eliminarDeveloperId(idDeveloper)
-
-                if (respuesta == true) {
-                    mostrarSnackbar("Developer eliminado exitosamente")
-                    cargarListaDevelopers()  // Actualiza la lista después de la eliminación
-                    eliminacionExitosa = true
-                } else {
-                    mostrarSnackbar("No se pudo eliminar al developer")
-                    eliminacionExitosa = false
-                }
+                BDDconection.bddAplication?.eliminarDeveloperId(idDeveloper.toString())
+                    ?.addOnSuccessListener {
+                        mostrarSnackbar("Cocinero eliminado exitosamente")
+                        cargarListaDevelopers()  // Actualiza la lista después de la eliminación
+                        eliminacionExitosa = true
+                    }
+                    ?.addOnFailureListener { e ->
+                        mostrarSnackbar("No se pudo eliminar al cocinero")
+                        eliminacionExitosa = false
+                    }
             }
         )
         builder.setNegativeButton(
@@ -166,17 +169,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
     private fun cargarListaDevelopers() {
-        // Cargar la lista de developers desde la base de datos y notificar al adaptador
-        developers = BDDconection.bddAplication!!.obtenerDeveloper()
-        val adaptador = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1,
-            developers
-        )
-        val listView = findViewById<ListView>(R.id.lv_list_developers)
-        listView.adapter = adaptador
-        adaptador.notifyDataSetChanged()
-        registerForContextMenu(listView)
+        // Cargar la lista de cocineros desde la base de datos y notificar al adaptador
+        BDDconection.bddAplication!!.obtenerDevelopers { developers ->
+            this.developers = developers
+
+            val adaptador = ArrayAdapter(
+                this,
+                android.R.layout.simple_list_item_1,
+                developers
+            )
+            val listView = findViewById<ListView>(R.id.lv_list_developers)
+            listView.adapter = adaptador
+            adaptador.notifyDataSetChanged()
+            registerForContextMenu(listView)
+        }
     }
 }

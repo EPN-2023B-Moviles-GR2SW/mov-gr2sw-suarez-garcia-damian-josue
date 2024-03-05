@@ -16,22 +16,30 @@ class Developer_edicion : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_developer_edicion)
 
-        val idDeveloperEdicion = intent.extras?.getInt("idDeveloper")
+        val idDeveloperEdicion = intent.extras!!.getInt("idDeveloper")
         val nombreDeveloper = intent.extras?.getString("nombreDeveloper")
         findViewById<TextView>(R.id.lbl_titulo_edicion_developer).text = nombreDeveloper
 
         if (idDeveloperEdicion != null) {
-            val developerEdicion = BDDconection.bddAplication!!.consultarDevoloperId(idDeveloperEdicion)
+            mostrarSnackbar(idDeveloperEdicion.toString())
+            BDDconection.bddAplication!!.consultarDeveloperPorId(idDeveloperEdicion.toString())
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        // El developer existe
+                        val developerEdicion = documentSnapshot.toObject(BDeveloper::class.java)
+                        val nombre = findViewById<EditText>(R.id.txt_nombre_edit)
+                        val fechaFundacion = findViewById<EditText>(R.id.txt_fecha_fundacion_edit)
+                        val totalJuegos = findViewById<EditText>(R.id.txt_total_juegos_edit)
+                        val ingresoAnuales = findViewById<EditText>(R.id.txt_ingresos_anuales_edit)
 
-            val nombre = findViewById<EditText>(R.id.txt_nombre_edit)
-            val fechaFundacion = findViewById<EditText>(R.id.txt_fecha_fundacion_edit)
-            val totalJuegos= findViewById<EditText>(R.id.txt_total_juegos_edit)
-            val ingresoAnuales= findViewById<EditText>(R.id.txt_ingresos_anuales_edit)
-
-            nombre.setText(developerEdicion.nombre)
-            fechaFundacion.setText(developerEdicion.fechaFundacion)
-            totalJuegos.setText(developerEdicion.totalJuegos.toString())
-            ingresoAnuales.setText(developerEdicion.ingresosAnuales.toString())
+                        developerEdicion?.let {
+                            nombre.setText(it.nombre)
+                            fechaFundacion.setText(it.fechaFundacion)
+                            totalJuegos.setText(it.totalJuegos.toString())
+                            ingresoAnuales.setText(it.ingresosAnuales.toString())
+                        }
+                    }
+                }
         }
 
         /*Edicion de desarrollador*/
@@ -40,8 +48,8 @@ class Developer_edicion : AppCompatActivity() {
             try {
                 val nombre = findViewById<EditText>(R.id.txt_nombre_edit)
                 val fechaFundacion = findViewById<EditText>(R.id.txt_fecha_fundacion_edit)
-                val totalJuegos= findViewById<EditText>(R.id.txt_total_juegos_edit)
-                val ingresoAnuales= findViewById<EditText>(R.id.txt_ingresos_anuales_edit)
+                val totalJuegos = findViewById<EditText>(R.id.txt_total_juegos_edit)
+                val ingresoAnuales = findViewById<EditText>(R.id.txt_ingresos_anuales_edit)
 
                 // Limpiar errores anteriores
                 nombre.error = null
@@ -58,20 +66,16 @@ class Developer_edicion : AppCompatActivity() {
                         ingresoAnuales.text.toString().toDouble()
                     )
 
-                    val respuesta =
-                        BDDconection.bddAplication!!.actualizarDeveloeprId(datosActualizados)
-
-                    if (respuesta) {
-                        val data = Intent()
-                        data.putExtra(
-                            "message",
-                            "Los datos del desarrollador se han actualizado exitosamente"
-                        )
-                        setResult(RESULT_OK, data)
-                        finish()
-                    } else {
-                        mostrarSnackbar("Hubo un problema al actualizar los datos")
-                    }
+                    BDDconection.bddAplication!!.actualizarDeveloperId(datosActualizados)
+                        .addOnSuccessListener {
+                            val data = Intent()
+                            data.putExtra("message", "Los datos del cocinero se han actualizado exitosamente")
+                            setResult(RESULT_OK, data)
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            mostrarSnackbar("Hubo un problema al actualizar los datos")
+                        }
                 }
             } catch (e: Exception) {
                 Log.e("Error", "Error en la aplicación", e)
@@ -79,7 +83,7 @@ class Developer_edicion : AppCompatActivity() {
         }
     }
 
-    private fun mostrarSnackbar(texto: String) {
+    fun mostrarSnackbar(texto: String) {
         Snackbar
             .make(
                 findViewById(R.id.layout_edicion_developer), //view
@@ -89,7 +93,7 @@ class Developer_edicion : AppCompatActivity() {
             .show()
     }
 
-    private fun validarCampos(
+    fun validarCampos(
         nombre: EditText,
         fechaFundacion: EditText,
         totalJuegos: EditText,
@@ -123,12 +127,12 @@ class Developer_edicion : AppCompatActivity() {
             }
         }
 
-        if(ingresosAnuales.text.isBlank()){
+        if (ingresosAnuales.text.isBlank()) {
             ingresosAnuales.error = "Campo requerido"
             return false
-        }else{
+        } else {
             val salarioDouble = ingresosAnuales.text.toString().toDouble()
-            if (salarioDouble <=0) {
+            if (salarioDouble <= 0) {
                 ingresosAnuales.error = "El ingreso anual debe ser un número mayor a 0"
                 return false
             }

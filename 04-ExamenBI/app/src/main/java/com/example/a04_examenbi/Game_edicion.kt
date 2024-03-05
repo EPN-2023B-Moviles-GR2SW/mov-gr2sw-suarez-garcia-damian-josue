@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
-
 class Game_edicion : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,30 +38,37 @@ class Game_edicion : AppCompatActivity() {
         findViewById<TextView>(R.id.txt_juego_titulo).setText("Juego a modificar: ${nombreGame}")
 
         if (idGame!= null && idDeveloperGame != null) {
+            BDDconection.bddAplication!!.consultarGamePorIdYDeveloper(idGame, idDeveloperGame)
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val GameEdicion = document.toObject(BGame::class.java)
+                        val nombre = findViewById<EditText>(R.id.et_nombre_game_edit)
+                        val fechaLanzamiento = findViewById<EditText>(R.id.et_fecha_lanzamiento_edit)
+                        val precio = findViewById<EditText>(R.id.et_precio_game_edit)
 
-            val GameEdicion = BDDconection.bddAplication!!.consultarGamePorIdyDeveloper(idGame, idDeveloperGame)
+                        nombre.setText(GameEdicion?.nombre)
+                        fechaLanzamiento.setText(GameEdicion?.fechaLanzamiento)
+                        precio.setText(GameEdicion?.precio.toString())
 
-            val nombre = findViewById<EditText>(R.id.et_nombre_game_edit)
-            val fechaLanzamiento = findViewById<EditText>(R.id.et_fecha_lanzamiento_edit)
-            val precio = findViewById<EditText>(R.id.et_precio_game_edit)
+                        // Configura el Spinner con el valor de platoPrincipal
+                        val esMultiplayerArray = resources.getStringArray(R.array.items_multiplayer)
 
+                        val esMultiplayerPosition = if (GameEdicion!!.esMultiplayer) {
+                            esMultiplayerArray.indexOf("Si")
+                        } else {
+                            esMultiplayerArray.indexOf("No")
+                        }
 
-            nombre.setText(GameEdicion.nombre)
-            fechaLanzamiento.setText(GameEdicion.fechaLanzamiento)
-            precio.setText(GameEdicion.precio.toString())
-
-            // Configura el Spinner con el valor de platoPrincipal
-            val esMultiplayerArray = resources.getStringArray(R.array.items_multiplayer)
-
-            val esMultiplayerPosition = if (GameEdicion.esMultiplayer) {
-                esMultiplayerArray.indexOf("Si")
-            } else {
-                esMultiplayerArray.indexOf("No")
-            }
-
-            spinnerMultiplayer.setSelection(esMultiplayerPosition)
-
+                        spinnerMultiplayer.setSelection(esMultiplayerPosition)
+                    } else {
+                        //El game no existe
+                    }
+                }
+                .addOnFailureListener { e ->
+                    // Manejar errores
+                }
         }
+
 
 
         /*Edicion de Game*/
@@ -70,7 +76,7 @@ class Game_edicion : AppCompatActivity() {
             btnGuardarGame
                 .setOnClickListener {
             try {
-                val idGame = intent.extras?.getInt("id")
+                val idGame = intent.extras!!.getInt("id")
                 val nombreGame = findViewById<EditText>(R.id.et_nombre_game_edit)
                 val fechaLanzamiento = findViewById<EditText>(R.id.et_fecha_lanzamiento_edit)
                 val esMultiplayer = spinnerMultiplayer.selectedItem.toString()
@@ -92,21 +98,17 @@ class Game_edicion : AppCompatActivity() {
                         idDeveloperGame!!
                     )
 
-                    val respuesta = BDDconection
-                        .bddAplication!!.actualizarGameIdyIdDeveloper(datosActualizados)
-
-                    if (respuesta) {
-                        val data = Intent()
-                        /*data.putExtra("idDeveloper", idDeveloperGame)
-                        data.putExtra("id", idGame)*/
-                        data.putExtra("message", "Los datos del juego se han actualizado exitosamente")
-                        setResult(RESULT_OK, data)
-                        finish()
-                        // Imprimir la representación en cadena del objeto actualizado
-                        Log.d("Actualización Exitosa", datosActualizados.toString())
-                    } else {
-                        mostrarSnackbar("Hubo un problema al actualizar los datos del juego")
-                    }
+                    BDDconection.bddAplication!!.actualizarGamePorIdentificadorYIdDeveloper(datosActualizados)
+                        .addOnSuccessListener {
+                            val data = Intent()
+                            data.putExtra("idDeveloper", idDeveloperGame)
+                            data.putExtra("message", "Los datos del game se han actualizado exitosamente")
+                            setResult(RESULT_OK, data)
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            mostrarSnackbar("Hubo un problema al actualizar los datos")
+                        }
                 }
 
             } catch (e: Exception) {

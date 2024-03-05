@@ -33,23 +33,24 @@ class Developer_creacion : AppCompatActivity() {
 
                 if (validarCampos(nombre, fechaFundacion, totalJuegos, ingresosAnuales)) {
                     val newDeveloper = BDeveloper(
-                        null,
+                        0,
                         nombre.text.toString(),
                         fechaFundacion.text.toString(),
                         totalJuegos.text.toString().toInt(),
                         ingresosAnuales.text.toString().toDouble()
                     )
 
-                    val respuesta = BDDconection.bddAplication!!.crearDeveloper(newDeveloper)
+                    BDDFirestore().crearDeveloper(newDeveloper)
+                        .addOnSuccessListener {
+                            val data = Intent()
+                            data.putExtra("message", "El developer se ha creado exitosamente")
+                            setResult(RESULT_OK, data)
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            mostrarSnackbar("Hubo un problema en la creacion del developer")
+                        }
 
-                    if (respuesta) {
-                        val data = Intent()
-                        data.putExtra("message", "El desarrollador se ha creado exitosamente")
-                        setResult(RESULT_OK, data)
-                        finish()
-                    } else {
-                        mostrarSnackbar("Hubo un problema en la creación del desarrollador")
-                    }
                 }
             } catch (e: Exception) {
                 Log.e("Error", "Error en la aplicación", e)

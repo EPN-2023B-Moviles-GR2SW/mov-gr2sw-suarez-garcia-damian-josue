@@ -11,7 +11,7 @@ import android.widget.Spinner
 import com.google.android.material.snackbar.Snackbar
 
 class Game_creacion : AppCompatActivity() {
-    private lateinit var bddSql: BDDSql
+    //private lateinit var bddSql: BDDSql
 
     var games = arrayListOf<BGame>()
 
@@ -47,10 +47,10 @@ class Game_creacion : AppCompatActivity() {
                     precio.error = null
 
 
-                    if(validarCampos(nombreGame,fechaLanzamiento,precio, esMultiplayer)){
+                    if(validarCampos(nombreGame,precio, esMultiplayer)){
                         val esMultiplayerValue = esMultiplayer.equals("Si")
                         val newGame = BGame(
-                            null,
+                            0,
                             nombreGame.text.toString(),
                             fechaLanzamiento.text.toString(),
                             precio.text.toString().toDouble(),
@@ -58,19 +58,19 @@ class Game_creacion : AppCompatActivity() {
                             idDeveloper!!
                         )
 
-                        val respuesta = BDDconection
-                            .bddAplication!!.crearGame(newGame)
-
-                        if(respuesta) {
-                            val data = Intent()
-                            data.putExtra("idDeveloper", idDeveloper.toString())
-                            data.putExtra("message", "El juego se ha creado exitosamente")
-                            setResult(RESULT_OK, data)
-                            finish()
-                        }else{
-                            mostrarSnackbar("Hubo un problema al crear el juego")
-                        }
+                        BDDconection.bddAplication!!.crearGame(newGame)
+                            .addOnSuccessListener {
+                                val data = Intent()
+                                data.putExtra("idDeveloper", idDeveloper.toString())
+                                data.putExtra("message", "El game se ha creado exitosamente")
+                                setResult(RESULT_OK, data)
+                                finish()
+                            }
+                            .addOnFailureListener { e ->
+                                mostrarSnackbar("Hubo un problema al crear el game")
+                            }
                     }
+
 
                 } catch (e: Exception) {
                     Log.e("Error", "Error en la aplicación", e)
@@ -90,7 +90,7 @@ class Game_creacion : AppCompatActivity() {
 
     fun validarCampos(
         nombreGame: EditText,
-        fechaLanzamiento: EditText,
+        //fechaLanzamiento: EditText,
         precioGame: EditText,
         esMultiplayer: String): Boolean {
 
@@ -99,7 +99,7 @@ class Game_creacion : AppCompatActivity() {
             return false
         }
 
-        if (fechaLanzamiento.text.isBlank()) {
+       /* if (fechaLanzamiento.text.isBlank()) {
             fechaLanzamiento.error = "Campo requerido"
             return false
         } else {
@@ -108,7 +108,7 @@ class Game_creacion : AppCompatActivity() {
                 fechaLanzamiento.error = "Formato de fecha inválido (debe ser yyyy-MM-dd)"
                 return false
             }
-        }
+        }*/
 
         if (precioGame.text.isBlank()) {
             precioGame.error = "Campo requerido"

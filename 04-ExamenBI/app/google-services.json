@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "729774875611",
+    "project_id": "b2024-gr2sw-djsg",
+    "storage_bucket": "b2024-gr2sw-djsg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729774875611:android:437e871c4479ae12bb3dfe",
+        "android_client_info": {
+          "package_name": "com.example.a04_examenbi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVoPO1ubgz7EltbNRabnI9NoF1yP-KcU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

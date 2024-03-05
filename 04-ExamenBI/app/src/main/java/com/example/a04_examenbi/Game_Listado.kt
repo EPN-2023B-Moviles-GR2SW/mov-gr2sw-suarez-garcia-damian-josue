@@ -16,14 +16,13 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
-
 class Game_Listado : AppCompatActivity() {
     var games = arrayListOf<BGame>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_listado)
         // Inicialización de la base de datos
-        BDDconection.bddAplication = BDDSql(this)
+        BDDconection.bddAplication = BDDFirestore()
 
         val idDeveloperGame = intent.extras?.getInt("idDeveloper")
         val nombreDeveloper = intent.extras?.getString("nombreDeveloper")
@@ -31,22 +30,25 @@ class Game_Listado : AppCompatActivity() {
         findViewById<TextView>(R.id.txt_titulo_nombre_developer).text = nombreDeveloper
 
         if (idDeveloperGame != null) {
-            games = BDDconection.bddAplication!!.obtenerGamesPorDeveloper(idDeveloperGame)
-            if (games.size != 0) {
-                // Listado de games
-                val listView = findViewById<ListView>(R.id.lv_listados_games)
+            BDDconection.bddAplication!!.obtenerGamesPorDeveloper(idDeveloperGame) { games ->
+                this.games = games
 
-                val adaptador = ArrayAdapter(
-                    this, // contexto
-                    android.R.layout.simple_list_item_1, // como se va a ver (XML)
-                    games
-                )
+                if(games.size != 0){
+                    //listado de games
+                    val listView = findViewById<ListView>(R.id.lv_listados_games)
 
-                listView.adapter = adaptador
-                adaptador.notifyDataSetChanged()
-                registerForContextMenu(listView)
-            } else {
-                mostrarSnackbar("No existen games")
+                    val adaptador = ArrayAdapter(
+                        this, // contexto
+                        android.R.layout.simple_list_item_1, // como se va a ver (XML)
+                        games
+                    )
+
+                    listView.adapter = adaptador
+                    adaptador.notifyDataSetChanged()
+                    registerForContextMenu(listView)
+                }else{
+                    mostrarSnackbar("No existen games")
+                }
             }
 
             val btnCrearGame = findViewById<Button>(R.id.btn_crear_game)
@@ -132,17 +134,16 @@ class Game_Listado : AppCompatActivity() {
             "Aceptar",
             DialogInterface.OnClickListener { dialog, which ->
 
-                val respuesta =
-                    BDDconection.bddAplication?.eliminarGamePorIdYIdDeveloper(idGame, idDeveloper)
-
-                if (respuesta == true) {
-                    mostrarSnackbar("Game eliminado exitosamente")
-                    cargarListaGames(idDeveloper)
-                    eliminacionExitosa = true
-                } else {
-                    mostrarSnackbar("No se pudo eliminar este game")
-                    eliminacionExitosa = false
-                }
+                BDDconection.bddAplication?.eliminarGamePorIdentificadorYIdDeveloper(idGame,idDeveloper)
+                    ?.addOnSuccessListener {
+                        mostrarSnackbar("Game eliminado exitosamente")
+                        cargarListaGames(idDeveloper)
+                        eliminacionExitosa = true
+                    }
+                    ?.addOnFailureListener { e ->
+                        mostrarSnackbar("No se pudo eliminar este Game")
+                        eliminacionExitosa = false
+                    }
             }
         )
         builder.setNegativeButton(
@@ -172,15 +173,17 @@ class Game_Listado : AppCompatActivity() {
 
             private fun cargarListaGames(idDeveloper: Int) {
         // Cargar la lista de games del developer desde la base de datos y notificar al adaptador
-        games = BDDconection.bddAplication!!.obtenerGamesPorDeveloper(idDeveloper)
-        val adaptador = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1,
-            games
-        )
-        val listView = findViewById<ListView>(R.id.lv_listados_games)
-        listView.adapter = adaptador
-        adaptador.notifyDataSetChanged()
-        registerForContextMenu(listView)
+                BDDconection.bddAplication!!.obtenerGamesPorDeveloper(idDeveloper){ games ->
+                    this.games = games
+                    val adaptador = ArrayAdapter(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        games
+                    )
+                    val listView = findViewById<ListView>(R.id.lv_listados_games)
+                    listView.adapter = adaptador
+                    adaptador.notifyDataSetChanged()
+                    registerForContextMenu(listView)
+                }
     }
 }
